@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-// Google Fonts
-import { Ubuntu } from "@next/font/google";
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
-
 export const Option = styled.div`
   background-color: #1c1f2e;
   border-radius: 8px;
@@ -28,10 +21,10 @@ export const ArrowContainer = styled.div`
   background-color: #1c1f2e;
   width: 16px;
   height: 16px;
+  border-radius: 4px;
   color: #5c667a;
   place-items: center;
   display: grid;
-  transition: all 100ms ease-in;
 `;
 
 export const Container = styled.div`
@@ -53,7 +46,30 @@ export const Container = styled.div`
     transform: scale(1) perspective(0px) translate3d(0, 0, 0);
   }
   &:hover ${ArrowContainer} {
+    background-color: #5c667a;
     transform: rotate(180deg);
+  }
+  &:hover ${ArrowContainer} svg {
+    color: #fff;
+  }
+  &:after {
+    content: "";
+    background-color: #5c667a;
+    width: 1px;
+    height: 64px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    transition: all 150ms ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+  &:hover:after {
+    width: 4px;
+    opacity: 1;
+    visibility: visible;
   }
 `;
 

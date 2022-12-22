@@ -9,7 +9,7 @@ export default function IconArrowDown() {
       <path
         d="M4,0,8,4H0Z"
         transform="translate(8 4) rotate(180)"
-        fill="#5c667a"
+        fill="currentColor"
       />
     </svg>
   );
