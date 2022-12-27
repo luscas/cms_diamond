@@ -13,7 +13,7 @@ export const Card = styled.div.attrs((props: CardProp) => ({
   disablePadding: props?.disablePadding || false,
 }))`
   background-color: #0e1020;
-  width: 100%;
+  max-width: 100%;
   border: 1px solid #2e313e80;
   border-radius: 8px;
   padding: ${(props) => (props?.disablePadding ? "0px" : "24px")};

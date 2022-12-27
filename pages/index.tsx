@@ -1,10 +1,13 @@
 import React, { useCallback } from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 // Components
 import { WelcomeContainer, Welcome } from "~/components/Main/styles";
 import Button from "~/components/Button";
 import IconAdd from "~/components/Icons/IconAdd";
+import { Columns } from "~/components/Column/styles";
+import { Card, CardTitle } from "~/components/Card/styles";
 
 // Views
 import UserPoints from "~/views/User/Points";
@@ -34,6 +37,140 @@ export default function Home() {
       </WelcomeContainer>
 
       <UserPoints />
+
+      <Columns mt={24} size={2}>
+        <Card>
+          <CardTitle>Ranking</CardTitle>
+
+          <Columns size={2} mt={12} justifyContent="space-between">
+            <select>
+              <option value="Dia">Dia</option>
+              <option value="Semana" selected>
+                Semana
+              </option>
+              <option value="Mês">Mês</option>
+            </select>
+
+            <input type="text" placeholder="Pesquisar" />
+          </Columns>
+
+          <table>
+            <thead>
+              <th>POS</th>
+              <th>NOME</th>
+              <th>CARGO</th>
+              <th>PTS</th>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Janjao</td>
+                <td>FUN</td>
+                <td>128</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Alma_Do_Alem</td>
+                <td>SOC</td>
+                <td>122</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Musica</td>
+                <td>DIR</td>
+                <td>112</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Mezajya</td>
+                <td>SOC</td>
+                <td>92</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Konzatsu</td>
+                <td>SOC</td>
+                <td>57</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>ADM</td>
+                <td>SOC</td>
+                <td>53</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>matheus65809</td>
+                <td>FUN</td>
+                <td>44</td>
+              </tr>
+            </tbody>
+          </table>
+        </Card>
+
+        <Card>
+          <Columns size={2} justifyContent="space-between">
+            <CardTitle>Ranking geral</CardTitle>
+
+            <Image
+              src="/images/refresh.svg"
+              width={24}
+              height={24}
+              alt="Refresh"
+            />
+          </Columns>
+
+          <Columns mt={12}>
+            <table>
+              <thead>
+                <th>POS</th>
+                <th>NOME</th>
+                <th>CARGO</th>
+                <th>PTS</th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Janjao</td>
+                  <td>128</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Alma_Do_Alem</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Musica</td>
+                  <td>112</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Mezajya</td>
+                  <td>92</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Konzatsu</td>
+                  <td>57</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>ADM</td>
+                  <td>53</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>matheus65809</td>
+                  <td>44</td>
+                </tr>
+              </tbody>
+            </table>
+          </Columns>
+        </Card>
+      </Columns>
 
       <Footer />
     </>
