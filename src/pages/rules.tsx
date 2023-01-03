@@ -33,6 +33,6 @@ export default function Rules() {
   );
 }
 
-Home.getLayout = function getLayout(page: React.ReactElement) {
+Rules.getLayout = function getLayout(page: React.ReactElement) {
   return <Default>{page}</Default>;
 };
