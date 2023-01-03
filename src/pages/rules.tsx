@@ -9,7 +9,7 @@ import IconAdd from "~/components/Icons/IconAdd";
 // Views
 import UserPoints from "~/views/User/Points";
 import Footer from "~/views/Footer";
-import Default from "~/layouts/Default";
+import Default from "../src/layouts/Default";
 
 export default function Home() {
   const handleEmitAlert = useCallback(() => {

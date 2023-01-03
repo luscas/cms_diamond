@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CardTitle = styled.div`
   font-family: "Ubuntu Condensed", sans-sarif;
   font-size: 18px;
+  color: #ffffff;
 `;
 
 export interface CardProp {
@@ -10,7 +11,7 @@ export interface CardProp {
 }
 
 export const Card = styled.div.attrs((props: CardProp) => ({
-  disablePadding: props?.disablePadding || false,
+  disablePadding: props?.disablePadding ?? false,
 }))`
   background-color: #0e1020;
   max-width: 100%;

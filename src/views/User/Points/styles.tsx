@@ -6,15 +6,25 @@ export const Container = styled.div`
 `;
 
 export const PointsContainer = styled.div`
-  flex-direction: column;
-  display: flex;
+  width: max-content;
   padding: 24px;
+  & .PopoverTrigger {
+    background: none;
+    font-size: 14px;
+    padding: 7px 8px;
+    border-radius: 8px;
+    color: #5c667a;
+    border: none;
+    &:hover {
+      background-color: #2e313e;
+      color: #fff;
+    }
+  }
 `;
 export const PointsTotal = styled.div`
   font-size: 56px;
   font-weight: bold;
   color: #ffffff;
-  padding-top: 20px;
 `;
 export const PointsTime = styled.div`
   width: max-content;
@@ -22,6 +32,7 @@ export const PointsTime = styled.div`
   padding: 7px 8px;
   border-radius: 8px;
   color: #5c667a;
+  display: block;
   &:hover {
     background-color: #2e313e;
     color: #fff;

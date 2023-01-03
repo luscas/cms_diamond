@@ -1,11 +1,6 @@
-import { useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
 import styles from "~/styles/Home.module.css";
-
-// Assets
-import logo from "../public/images/logo.svg";
 
 // Components
 import { IconHome, IconPlus, IconPaper } from "~/components/Icons";
@@ -35,7 +30,7 @@ export default function Default(props: DefaultProps) {
     {
       title: "Home",
       icon: <IconHome />,
-      link: "/",
+      link: "/home",
     },
     {
       title: "Pontuar",
@@ -62,7 +57,7 @@ export default function Default(props: DefaultProps) {
         <Menu>
           <Image
             className={styles.logo}
-            src={logo}
+            src={"/images/logo.svg"}
             alt="Logo"
             width={32}
             height={32}
