@@ -1,21 +1,10 @@
 import React, { useCallback } from "react";
 import Head from "next/head";
 
-// Components
-import { WelcomeContainer, Welcome } from "~/components/Main/styles";
-import Button from "~/components/Button";
-import IconAdd from "~/components/Icons/IconAdd";
-
 // Views
-import UserPoints from "~/views/User/Points";
-import Footer from "~/views/Footer";
-import Default from "../src/layouts/Default";
+import Default from "~/layouts/Default";
 
-export default function Home() {
-  const handleEmitAlert = useCallback(() => {
-    alert("Hello World!");
-  }, []);
-
+export default function Rules() {
   return (
     <>
       <Head>
@@ -26,7 +15,9 @@ export default function Home() {
       </Head>
 
       <h1>What is Lorem Ipsum?</h1>
+
       <br />
+
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industrys standard dummy text ever
