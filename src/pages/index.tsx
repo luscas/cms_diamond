@@ -15,8 +15,23 @@ import {
 import { RiAccountCircleFill } from "react-icons/ri";
 import { HiLockOpen } from "react-icons/hi";
 import Link from "next/link";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 
 export default function Index() {
+  const session = useSession();
+  const supabase = useSupabaseClient();
+
+  if (!session) {
+    return (
+      <Auth
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        theme="dark"
+      />
+    );
+  }
+
   return (
     <>
       <Box
@@ -95,12 +110,19 @@ export default function Index() {
               </Button>
             </Link>
 
-            <Link href="/" color="white">
-              <Text my={6} fontWeight="medium" color="#5C667A" px={2}>
-                Ainda não possui uma conta?{" "}
-                <Text color="white" display="inline-block">
-                  Cadastre-se
-                </Text>
+            <Link href="/">
+              <Text
+                my={6}
+                fontWeight="medium"
+                color="#5C667A"
+                px={2}
+                css={{
+                  "& span": {
+                    color: "#fff",
+                  },
+                }}
+              >
+                Ainda não possui uma conta? <span>Cadastre-se</span>
               </Text>
             </Link>
           </GridItem>

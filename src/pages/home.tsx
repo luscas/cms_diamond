@@ -35,8 +35,9 @@ import { FiSearch } from "react-icons/fi";
 import { BsFillCircleFill } from "react-icons/bs";
 import { HiRefresh } from "react-icons/hi";
 import supabase from "~/services/supabase";
+import { getUser } from "~/services/auth/user";
 
-export default function Home(props: { points: any[] }) {
+export default function Home(props: { data: any[] }) {
   return (
     <>
       <Head>
@@ -58,6 +59,7 @@ export default function Home(props: { points: any[] }) {
 
       <section>
         <pre>{JSON.stringify(props, null, 2)}</pre>
+        {JSON.stringify(getUser(props.data[0].user_id), null, 2)}
         <Grid templateColumns="repeat(12, 1fr)" mt={5} gap={5}>
           <GridItem colSpan={7}>
             <Card>
@@ -68,11 +70,9 @@ export default function Home(props: { points: any[] }) {
 
               <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={4}>
                 <GridItem colSpan={2}>
-                  <Select>
+                  <Select defaultValue="Semanac">
                     <option value="Dia">Dia</option>
-                    <option value="Semana" selected>
-                      Semana
-                    </option>
+                    <option value="Semana">Semana</option>
                     <option value="Mês">Mês</option>
                   </Select>
                 </GridItem>
@@ -155,11 +155,11 @@ export default function Home(props: { points: any[] }) {
 }
 
 export async function getServerSideProps() {
-  const { data: points } = await supabase.from("points").select();
+  const { data } = await supabase.from("points").select();
 
   return {
     props: {
-      points,
+      data,
     },
   };
 }
