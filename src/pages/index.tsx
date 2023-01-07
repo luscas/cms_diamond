@@ -17,20 +17,24 @@ import { HiLockOpen } from "react-icons/hi";
 import Link from "next/link";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import { useContext } from "react";
+import { AuthContext } from "providers/AuthContext";
 
 export default function Index() {
-  const session = useSession();
-  const supabase = useSupabaseClient();
+  const session = useContext(AuthContext);
 
-  if (!session) {
-    return (
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        theme="dark"
-      />
-    );
-  }
+  // const session = useSession();
+  // const supabase = useSupabaseClient();
+
+  // if (!session) {
+  //   return (
+  //     <Auth
+  //       supabaseClient={supabase}
+  //       appearance={{ theme: ThemeSupa }}
+  //       theme="dark"
+  //     />
+  //   );
+  // }
 
   return (
     <>
@@ -84,6 +88,8 @@ export default function Index() {
               Fazer login
             </Text>
 
+            <pre>{JSON.stringify(session, null, 2)}</pre>
+
             <SimpleGrid spacing={4}>
               <InputGroup>
                 <InputLeftElement mt={3} ml={3}>
@@ -104,11 +110,22 @@ export default function Index() {
               Salvar dados
             </Checkbox>
 
-            <Link href="/home">
-              <Button w="100%" variant="gradient" size="xl">
-                ENTRAR
-              </Button>
-            </Link>
+            {/* <Link href="/home"> */}
+            <Button
+              w="100%"
+              variant="gradient"
+              size="xl"
+              onClick={() =>
+                session?.setUser({
+                  uid: "123",
+                  username: "teste",
+                  email: "eu@Lucaspaz.com",
+                })
+              }
+            >
+              ENTRAR
+            </Button>
+            {/* </Link> */}
 
             <Link href="/">
               <Text

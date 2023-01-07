@@ -9,6 +9,7 @@ import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
 import theme from "../config/theme";
+import { AuthProvider } from "../providers/AuthContext";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -23,13 +24,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page);
 
   return getLayout(
-    <SessionContextProvider
-      supabaseClient={supabase}
-      initialSession={pageProps.initialSession}
-    >
+    <AuthProvider>
+      {/* <SessionContextProvider
+        supabaseClient={supabase}
+        initialSession={pageProps.initialSession}
+      > */}
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
-    </SessionContextProvider>
+      {/* </SessionContextProvider> */}
+    </AuthProvider>
   );
 }
