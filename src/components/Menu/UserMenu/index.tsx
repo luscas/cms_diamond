@@ -7,7 +7,7 @@ export default function UserMenu() {
     <Container>
       <Avatar />
 
-      <Link href="/">
+      <Link href="/api/logout">
         <Option>Desconectar</Option>
       </Link>
 

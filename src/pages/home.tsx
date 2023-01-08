@@ -1,12 +1,10 @@
-import React, { useCallback } from "react";
 import Head from "next/head";
+
 // Components
 import { WelcomeContainer, Welcome } from "~/components/Main/styles";
-
-// import Button from "~/components/Button";
-
 import IconAdd from "~/components/Icons/IconAdd";
 import { Card, CardTitle } from "~/components/Card/styles";
+import IconCrown from "~/components/Icons/IconCrown";
 
 // Views
 import UserPoints from "~/views/User/Points";
@@ -39,11 +37,13 @@ import { BsFillCircleFill } from "react-icons/bs";
 import { HiRefresh } from "react-icons/hi";
 
 // GraphQL
-import client from "~/graphql/client";
+import { createClient } from "~/graphql/client/client_user";
 import { GET_RANKING_POINTS } from "~/graphql/ranking_points";
-import IconCrown from "~/components/Icons/IconCrown";
+import { AuthContext } from "../providers/AuthContext";
+import { useContext } from "react";
 
 export default function Home(props: any) {
+  const session = useContext(AuthContext);
   const getRankColor = (position: number) => {
     switch (position) {
       case 1:
@@ -76,7 +76,7 @@ export default function Home(props: any) {
       </Head>
 
       <WelcomeContainer>
-        <Welcome>Bem-vindo, ;-Isabel-;!</Welcome>
+        <Welcome>Bem-vindo, {session?.user?.nick}!</Welcome>
         <Button size="lg" variant="gradient">
           <IconAdd />
           Pontuar
@@ -85,8 +85,9 @@ export default function Home(props: any) {
 
       <UserPoints
         points={
-          props.view_ranking_weekly.find((row: any) => row.nick == ";-Isabel-;")
-            ?.pts
+          props.view_ranking_weekly.find(
+            (row: any) => row.nick == session?.user?.nick
+          )?.pts
         }
       />
 
@@ -201,7 +202,10 @@ export default function Home(props: any) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx: any) {
+  const token = ctx.req.cookies["diamond_token"];
+  const client = createClient(token);
+
   const { data: ranking_points } = await client.query({
     query: GET_RANKING_POINTS,
   });

@@ -9,6 +9,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../config/theme";
 import { AuthProvider } from "../providers/AuthContext";
 
+import jsonwebtoken from "jsonwebtoken";
+const NEXT_PRIVATE_JWT_TOKEN = process.env.NEXT_PRIVATE_JWT_TOKEN;
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };

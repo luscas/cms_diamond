@@ -15,8 +15,10 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { HiClock } from "react-icons/hi";
-import client from "~/graphql/client";
+import { createClient } from "~/graphql/client/client_user";
 import { GET_POINT_TYPES } from "~/graphql/point_types";
+
+import nookies from "nookies";
 
 // Views
 import Default from "~/layouts/Default";
@@ -119,7 +121,10 @@ CreatePoints.getLayout = function getLayout(page: React.ReactElement) {
   return <Default>{page}</Default>;
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx: any) => {
+  const token = ctx.req.cookies["diamond_token"];
+  const client = createClient(token);
+
   const { data } = await client.query({
     query: GET_POINT_TYPES,
   });
