@@ -83,7 +83,7 @@ export const Avatar = styled.div`
   position: relative;
   &:after {
     content: "";
-    background-image: url(https://sandbox.habbo.com/habbo-imaging/avatarimage?img_format=png&user=;-Isabel-;&direction=4&head_direction=3&size=l&action=std);
+    background-image: url(https://habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=4queijos&direction=4&head_direction=3&size=l&action=std);
     width: 128px;
     height: 220px;
     position: absolute;
