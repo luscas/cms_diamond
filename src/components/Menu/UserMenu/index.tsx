@@ -1,13 +1,15 @@
-import Image from "next/image";
 import { Container, Avatar, ArrowContainer, Option } from "./styles";
 import { IconArrowDown } from "~/components/Icons";
+import Link from "next/link";
 
 export default function UserMenu() {
   return (
     <Container>
       <Avatar />
 
-      <Option>Desconectar</Option>
+      <Link href="/">
+        <Option>Desconectar</Option>
+      </Link>
 
       <ArrowContainer>
         <IconArrowDown />

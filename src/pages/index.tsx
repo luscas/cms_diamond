@@ -1,4 +1,7 @@
+import { useContext, useCallback } from "react";
+import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Box,
   Text,
@@ -14,30 +17,16 @@ import {
 
 import { RiAccountCircleFill } from "react-icons/ri";
 import { HiLockOpen } from "react-icons/hi";
-import Link from "next/link";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
-import { useContext } from "react";
 import { AuthContext } from "providers/AuthContext";
 
 export default function Index() {
   const session = useContext(AuthContext);
 
-  // const session = useSession();
-  // const supabase = useSupabaseClient();
-
-  // if (!session) {
-  //   return (
-  //     <Auth
-  //       supabaseClient={supabase}
-  //       appearance={{ theme: ThemeSupa }}
-  //       theme="dark"
-  //     />
-  //   );
-  // }
-
   return (
     <>
+      <Head>
+        <title>Login • Diamond</title>
+      </Head>
       <Box
         bgImage="url(/images/bg.png)"
         bgSize="cover"
@@ -110,22 +99,24 @@ export default function Index() {
               Salvar dados
             </Checkbox>
 
-            {/* <Link href="/home"> */}
-            <Button
-              w="100%"
-              variant="gradient"
-              size="xl"
-              onClick={() =>
-                session?.setUser({
-                  uid: "123",
-                  username: "teste",
-                  email: "eu@Lucaspaz.com",
-                })
-              }
-            >
-              ENTRAR
-            </Button>
-            {/* </Link> */}
+            <Link href="/home">
+              <Button
+                w="100%"
+                variant="gradient"
+                size="xl"
+                onClick={useCallback(
+                  () =>
+                    session?.setUser({
+                      uid: "123",
+                      username: ";-Isabel-;",
+                      email: "isabel@example.com",
+                    }),
+                  [session]
+                )}
+              >
+                ENTRAR
+              </Button>
+            </Link>
 
             <Link href="/">
               <Text

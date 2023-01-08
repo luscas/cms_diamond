@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  margin-top: -4px;
   grid-template-columns: repeat(3, 1fr);
   display: grid;
 `;
 
 export const PointsContainer = styled.div`
   width: max-content;
-  padding: 24px;
+  padding: 0 24px 24px 24px;
   & .PopoverTrigger {
     background: none;
     font-size: 14px;
@@ -82,7 +83,7 @@ export const Avatar = styled.div`
   position: relative;
   &:after {
     content: "";
-    background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=4queijos&direction=4&head_direction=3&size=l&action=std);
+    background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=;-Isabel-;&direction=4&head_direction=3&size=l&action=std);
     width: 128px;
     height: 220px;
     position: absolute;

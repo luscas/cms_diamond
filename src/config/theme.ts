@@ -2,6 +2,40 @@ import { extendTheme } from "@chakra-ui/react";
 
 export default extendTheme({
   components: {
+    Divider: {
+      baseStyle: {
+        borderColor: "#2E313E",
+        my: 6,
+      },
+    },
+    Card: {
+      variants: {
+        contained: {
+          container: {
+            background: "#0E1020",
+            borderWidth: 1,
+            borderColor: "#2E313E80",
+            color: "#fff",
+            borderRadius: "8px",
+          },
+          header: {
+            padding: 6,
+          },
+          body: {
+            padding: 6,
+          },
+        },
+      },
+      sizes: {},
+      defaultProps: {
+        variant: "contained", // null here
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: "#ffffff",
+      },
+    },
     Input: {
       baseStyle: {
         field: {
@@ -24,7 +58,7 @@ export default extendTheme({
             fontSize: "lg",
             fontWeight: "medium",
             "--chakra-space-10": "54px",
-            pr: 6,
+            px: 6,
             py: 4,
             rounded: "lg",
           },
@@ -43,12 +77,28 @@ export default extendTheme({
           borderWidth: 1,
           fontSize: 14,
           color: "#fff",
+          "&:invalid": {
+            color: "#5C667A",
+          },
           ":focus": {
             borderColor: "blue.500",
           },
         },
       },
-      sizes: {},
+      sizes: {
+        xl: {
+          field: {
+            fontSize: "lg",
+            fontWeight: "medium",
+            rounded: "lg",
+            py: 5,
+            px: 6,
+          },
+          icon: {
+            mr: 2,
+          },
+        },
+      },
       variants: {},
       defaultProps: {
         variant: null, // null here
@@ -93,9 +143,18 @@ export default extendTheme({
           fontFamily: "Ubuntu Condensed",
           fontWeight: 400,
           color: "#ffffff",
+          px: 6,
+          py: "18px",
           "& svg": {
             color: "#ffffff",
             marginRight: 2,
+          },
+          _disabled: {
+            bg: "#5C667A",
+            opacity: 1,
+          },
+          "&:hover[disabled]": {
+            bg: "#5C667A",
           },
         },
       },

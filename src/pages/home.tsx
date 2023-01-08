@@ -2,7 +2,9 @@ import React, { useCallback } from "react";
 import Head from "next/head";
 // Components
 import { WelcomeContainer, Welcome } from "~/components/Main/styles";
+
 // import Button from "~/components/Button";
+
 import IconAdd from "~/components/Icons/IconAdd";
 import { Card, CardTitle } from "~/components/Card/styles";
 
@@ -12,6 +14,7 @@ import Footer from "~/views/Footer";
 import Default from "~/layouts/Default";
 
 import {
+  Text,
   Button,
   Select,
   InputGroup,
@@ -34,10 +37,35 @@ import {
 import { FiSearch } from "react-icons/fi";
 import { BsFillCircleFill } from "react-icons/bs";
 import { HiRefresh } from "react-icons/hi";
-import supabase from "~/services/supabase";
-import { getUser } from "~/services/auth/user";
 
-export default function Home(props: { data: any[] }) {
+// GraphQL
+import client from "~/graphql/client";
+import { GET_RANKING_POINTS } from "~/graphql/ranking_points";
+import IconCrown from "~/components/Icons/IconCrown";
+
+export default function Home(props: any) {
+  const getRankColor = (position: number) => {
+    switch (position) {
+      case 1:
+        return "#E0BD62";
+      case 2:
+        return "#42C2CA";
+      default:
+        return "#ffffff";
+    }
+  };
+
+  const getRankFontSize = (position: number) => {
+    switch (position) {
+      case 1:
+        return 20;
+      case 2:
+        return 18;
+      default:
+        return 16;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -48,18 +76,22 @@ export default function Home(props: { data: any[] }) {
       </Head>
 
       <WelcomeContainer>
-        <Welcome>Bem-vindo, Hendiw!</Welcome>
+        <Welcome>Bem-vindo, ;-Isabel-;!</Welcome>
         <Button size="lg" variant="gradient">
           <IconAdd />
           Pontuar
         </Button>
       </WelcomeContainer>
 
-      <UserPoints />
+      <UserPoints
+        points={
+          props.view_ranking_weekly.find((row: any) => row.nick == ";-Isabel-;")
+            ?.pts
+        }
+      />
 
       <section>
-        <pre>{JSON.stringify(props, null, 2)}</pre>
-        {JSON.stringify(getUser(props.data[0].user_id), null, 2)}
+        {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
         <Grid templateColumns="repeat(12, 1fr)" mt={5} gap={5}>
           <GridItem colSpan={7}>
             <Card>
@@ -70,7 +102,7 @@ export default function Home(props: { data: any[] }) {
 
               <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={4}>
                 <GridItem colSpan={2}>
-                  <Select defaultValue="Semanac">
+                  <Select defaultValue="Semana">
                     <option value="Dia">Dia</option>
                     <option value="Semana">Semana</option>
                     <option value="Mês">Mês</option>
@@ -100,17 +132,20 @@ export default function Home(props: { data: any[] }) {
                   </Thead>
 
                   <Tbody>
-                    <Tr>
-                      <Td isNumeric>1</Td>
-                      <Td>Janjao</Td>
-                      <Td>
-                        <Tag colorScheme="whiteAlpha">
-                          <TagLeftIcon boxSize="8px" as={BsFillCircleFill} />
-                          FUN
-                        </Tag>
-                      </Td>
-                      <Td isNumeric>128</Td>
-                    </Tr>
+                    {props.view_ranking_weekly.map((row: any) => (
+                      <Tr key={row.rnk}>
+                        <Td isNumeric>{row.rnk}</Td>
+                        <Td display="flex" alignItems="center" gap={3}>
+                          {row.nick}
+                        </Td>
+                        <Td>
+                          <Tag colorScheme="whiteAlpha">
+                            <TagLeftIcon boxSize="8px" as={BsFillCircleFill} />?
+                          </Tag>
+                        </Td>
+                        <Td isNumeric>{row.pts}</Td>
+                      </Tr>
+                    ))}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -125,7 +160,7 @@ export default function Home(props: { data: any[] }) {
                 <HiRefresh size={20} />
               </Flex>
 
-              <TableContainer mt={4}>
+              <TableContainer mt={4} overflowX="hidden">
                 <Table>
                   <Thead>
                     <Tr>
@@ -136,11 +171,23 @@ export default function Home(props: { data: any[] }) {
                   </Thead>
 
                   <Tbody>
-                    <Tr>
-                      <Td isNumeric>1</Td>
-                      <Td>Janjao</Td>
-                      <Td isNumeric>128</Td>
-                    </Tr>
+                    {props.view_ranking_all.map((row: any) => (
+                      <Tr key={row.rnk}>
+                        <Td isNumeric>{row.rnk}</Td>
+                        <Td display="flex" alignItems="center" gap={3}>
+                          <Text color={getRankColor(row.rnk)}>{row.nick}</Text>
+                          {row.rnk == 1 && <IconCrown />}
+                        </Td>
+                        <Td isNumeric>
+                          <Text
+                            fontSize={getRankFontSize(row.rnk)}
+                            color={getRankColor(row.rnk)}
+                          >
+                            {row.pts}
+                          </Text>
+                        </Td>
+                      </Tr>
+                    ))}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -155,11 +202,13 @@ export default function Home(props: { data: any[] }) {
 }
 
 export async function getServerSideProps() {
-  const { data } = await supabase.from("points").select();
+  const { data: ranking_points } = await client.query({
+    query: GET_RANKING_POINTS,
+  });
 
   return {
     props: {
-      data,
+      ...ranking_points,
     },
   };
 }

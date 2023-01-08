@@ -34,3 +34,41 @@ option {
 svg {
   color: #5C667A;
 }
+
+.DropdownMenuButton {
+  background: none;
+  font-size: 14px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  color: #5c667a;
+  border: none;
+}
+.DropdownMenuButton:hover,
+.DropdownMenuButton[data-state="open"] {
+  background-color: #2e313e;
+  color: #fff;
+}
+.DropdownMenuContent {
+  border-radius: 4px;
+  padding: 15px 10px;
+  width: 260px;
+  background-color: #0e1020;
+  border: 1px solid #2e313e80;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}
+.DropdownMenuContent .DropdownMenuArrow {
+  fill: #0e1020;
+  filter: drop-shadow(0 1px 0 #2e313e80);
+  z-index: 1;
+}
+.DropdownMenuItem {
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  transition: background 0.2s ease-in-out;
+  cursor: pointer;
+}
+.DropdownMenuItem:hover {
+  background-color: #2e313e;
+}

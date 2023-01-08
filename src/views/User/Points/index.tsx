@@ -1,5 +1,7 @@
 import * as Popover from "@radix-ui/react-popover";
-import { Card, CardTitle } from "~/components/Card/styles";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+// import { Card, CardTitle } from "~/components/Card/styles";
+import { Card, CardHeader } from "@chakra-ui/react";
 import {
   Container,
   PointsContainer,
@@ -8,34 +10,51 @@ import {
   Info,
   Role,
 } from "./styles";
-import { PopoverContent } from "~/components/Popover/styles";
+import { useCallback, useState } from "react";
 
-export default function UserPoints() {
+export default function UserPoints({ points }: { points?: number }) {
+  const [option, setOption] = useState<string>("Essa semana");
+
   return (
-    <Card disablePadding={true}>
-      <CardTitle>Meus pontos</CardTitle>
+    <Card>
+      <CardHeader>Meus pontos</CardHeader>
 
       <Container>
         <PointsContainer>
-          <PointsTotal>128</PointsTotal>
-          <Popover.Root>
-            <Popover.Trigger className="PopoverTrigger">
-              Essa semana
-            </Popover.Trigger>
-            <Popover.Anchor />
-            <Popover.Portal>
-              <Popover.Content asChild>
-                <PopoverContent>
-                  <ul className="options">
-                    <li>Essa semana</li>
-                    <li>Esse mês</li>
-                    <li>Esse ano</li>
-                  </ul>
-                  <Popover.Arrow className="PopoverArrow" />
-                </PopoverContent>
-              </Popover.Content>
-            </Popover.Portal>
-          </Popover.Root>
+          <PointsTotal>{points || 0}</PointsTotal>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className="DropdownMenuButton">
+              {option}
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content
+                className="DropdownMenuContent"
+                sideOffset={5}
+              >
+                <DropdownMenu.Item
+                  className="DropdownMenuItem"
+                  onClick={useCallback(() => setOption("Essa semana"), [])}
+                >
+                  Essa semana
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  className="DropdownMenuItem"
+                  onClick={useCallback(() => setOption("Esse mês"), [])}
+                >
+                  Esse mês
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  className="DropdownMenuItem"
+                  onClick={useCallback(() => setOption("Esse ano"), [])}
+                >
+                  Esse ano
+                </DropdownMenu.Item>
+
+                <DropdownMenu.Arrow className="DropdownMenuArrow" />
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
         </PointsContainer>
 
         <div></div>

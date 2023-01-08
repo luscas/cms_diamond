@@ -15,6 +15,7 @@ export const Option = styled.div`
   visibility: hidden;
   opacity: 0;
   transform: scale(0.95) perspective(100px) translate3d(0, -10px, 0);
+  color: #ffffff;
 `;
 
 export const ArrowContainer = styled.div`
@@ -74,7 +75,7 @@ export const Container = styled.div`
 `;
 
 export const Avatar = styled.div`
-  background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=4queijos&direction=2&head_direction=3&size=m&headonly=1);
+  background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=;-Isabel-;&direction=2&head_direction=3&size=m&headonly=1);
   background-position: center;
   background-color: #6d95f7;
   width: 48px;
