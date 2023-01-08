@@ -44,7 +44,7 @@ export default async function handler(
     );
 
     if (!is_password_correct) {
-      throw "Senha incorreta. " + (await bcrypt.hash(User.password, 10));
+      throw "Senha incorreta.";
     }
 
     const token = jsonwebtoken.sign(
