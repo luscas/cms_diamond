@@ -72,3 +72,21 @@ svg {
 .DropdownMenuItem:hover {
   background-color: #2e313e;
 }
+
+.recharts-pie path,
+.recharts-pie g {
+  stroke: none;
+  border: none;
+  outline: none;
+}
+.recharts-default-tooltip {
+  background: rgba(0,0,0,0.80)!important;
+  border-radius: 4px;
+  border: none!important;
+  outline: none;
+  font-size: 14px;
+  padding: 4px 8px!important;
+}
+.recharts-tooltip-item {
+  color: #fff!important;
+}

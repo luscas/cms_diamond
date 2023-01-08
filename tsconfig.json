@@ -21,7 +21,9 @@
       "~/pages/*": ["./pages/*"],
       "~/styles/*": ["./styles/*"],
       "~/layouts/*": ["./layouts/*"],
-      "~/graphql/*": ["./graphql/*"]
+      "~/graphql/*": ["./graphql/*"],
+      "~/providers/*": ["./providers/*"],
+      "~/config/*": ["./config/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

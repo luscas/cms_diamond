@@ -5,7 +5,7 @@ export const Menu = styled.div`
   width: 96px;
   height: 100%;
   border-right: 1px solid #2e313e80;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 2;

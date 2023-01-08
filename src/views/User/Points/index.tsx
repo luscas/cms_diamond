@@ -1,7 +1,5 @@
-import * as Popover from "@radix-ui/react-popover";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-// import { Card, CardTitle } from "~/components/Card/styles";
-import { Card, CardHeader } from "@chakra-ui/react";
+import { Box, Card, CardHeader, Flex, Text } from "@chakra-ui/react";
 import {
   Container,
   PointsContainer,
@@ -10,10 +8,27 @@ import {
   Info,
   Role,
 } from "./styles";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { PieChart, Pie, Tooltip, Cell } from "recharts";
 
-export default function UserPoints({ points }: { points?: number }) {
-  const [option, setOption] = useState<string>("Essa semana");
+export interface UserPointsProps {
+  points: number;
+  option: string;
+  setOption: (option: string) => void;
+}
+
+export default function UserPoints({
+  points,
+  option,
+  setOption,
+}: UserPointsProps) {
+  const data = [
+    { name: "Pontos de dança", value: 400 },
+    { name: "Pontos de evento", value: 300 },
+    { name: "Pontos de gerência", value: 300 },
+  ];
+
+  const COLORS = ["#42C2CA", "#6051D1", "#E0BD62"];
 
   return (
     <Card>
@@ -34,19 +49,28 @@ export default function UserPoints({ points }: { points?: number }) {
               >
                 <DropdownMenu.Item
                   className="DropdownMenuItem"
-                  onClick={useCallback(() => setOption("Essa semana"), [])}
+                  onClick={useCallback(
+                    () => setOption("Essa semana"),
+                    [setOption]
+                  )}
                 >
                   Essa semana
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
                   className="DropdownMenuItem"
-                  onClick={useCallback(() => setOption("Esse mês"), [])}
+                  onClick={useCallback(
+                    () => setOption("Esse mês"),
+                    [setOption]
+                  )}
                 >
                   Esse mês
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
                   className="DropdownMenuItem"
-                  onClick={useCallback(() => setOption("Esse ano"), [])}
+                  onClick={useCallback(
+                    () => setOption("Esse ano"),
+                    [setOption]
+                  )}
                 >
                   Esse ano
                 </DropdownMenu.Item>
@@ -57,7 +81,43 @@ export default function UserPoints({ points }: { points?: number }) {
           </DropdownMenu.Root>
         </PointsContainer>
 
-        <div></div>
+        <Flex gap={4}>
+          <PieChart width={88} height={88}>
+            <Pie
+              activeIndex={2}
+              data={data}
+              cx="50%"
+              cy="50%"
+              innerRadius={33}
+              outerRadius={42}
+              paddingAngle={5}
+              dataKey="value"
+              isAnimationActive={false}
+            >
+              {data.map((entry, index) => (
+                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+
+          <Flex gap={4} flexDir="column">
+            {data.map((entry, index) => (
+              <Flex key={entry.name} alignItems="center" gap={3}>
+                <Box
+                  width="24px"
+                  height="8px"
+                  bg={COLORS[index]}
+                  rounded="sm"
+                />
+
+                <Text fontSize="sm" color="#5C667A">
+                  {entry.name}
+                </Text>
+              </Flex>
+            ))}
+          </Flex>
+        </Flex>
 
         <Info>
           <Avatar />
