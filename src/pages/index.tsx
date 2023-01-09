@@ -154,7 +154,7 @@ export default function Index() {
                 ENTRAR
               </Button>
 
-              <Link href="/">
+              <Link href="/register">
                 <Text
                   my={6}
                   fontWeight="medium"

@@ -23,7 +23,8 @@
       "~/layouts/*": ["./layouts/*"],
       "~/graphql/*": ["./graphql/*"],
       "~/providers/*": ["./providers/*"],
-      "~/config/*": ["./config/*"]
+      "~/config/*": ["./config/*"],
+      "~/hooks/*": ["./hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

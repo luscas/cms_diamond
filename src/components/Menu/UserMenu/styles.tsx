@@ -26,14 +26,14 @@ export const ArrowContainer = styled.div`
   color: #5c667a;
   place-items: center;
   display: grid;
+  transform: translateX(-8px);
+  flex-shrink: 0;
 `;
 
 export const Container = styled.div`
+  max-width: 84px;
   flex: 1;
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-top: 48px;
-  margin-bottom: 136px;
+  margin: 48px 12px 136px 12px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -48,7 +48,7 @@ export const Container = styled.div`
   }
   &:hover ${ArrowContainer} {
     background-color: #5c667a;
-    transform: rotate(180deg);
+    transform: translateX(-8px) rotate(180deg);
   }
   &:hover ${ArrowContainer} svg {
     color: #fff;
@@ -62,7 +62,7 @@ export const Container = styled.div`
     border-bottom-left-radius: 4px;
     position: absolute;
     top: -8px;
-    right: -12px;
+    right: -4px;
     transition: all 150ms ease-in-out;
     opacity: 0;
     visibility: hidden;
@@ -81,5 +81,5 @@ export const Avatar = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 48px;
-  flex-shrink: 1;
+  flex-shrink: 0;
 `;

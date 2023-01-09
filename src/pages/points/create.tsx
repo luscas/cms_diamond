@@ -12,6 +12,7 @@ import {
   InputRightElement,
   Select,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { HiClock } from "react-icons/hi";
@@ -102,7 +103,22 @@ export default function CreatePoints(props: any) {
               bg: "#1C1F2E",
             }}
             transition="background-color 0.2s"
-          ></Box>
+            cursor="pointer"
+            userSelect="none"
+          >
+            <Flex
+              maxW="320px"
+              h="100%"
+              mx="auto"
+              py={8}
+              flexDirection="column"
+              alignItems="center"
+              gap={2}
+            >
+                <img width={40} src="/images/file.svg" alt="Upload file" />
+              <Text fontSize="sm" align="center" color="#5C667A">Arraste e solte, dê um Ctrl + V ou clique para subir as imagens do pagamento.</Text>
+            </Flex>
+          </Box>
 
           <Text fontSize="sm" color="#CF4242">
             É necessário adicionar arquivos para continuar.

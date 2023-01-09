@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  max-height: 140px;
   margin-top: -4px;
-  grid-template-columns: repeat(3, 1fr);
-  display: grid;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  display: flex;
 `;
 
 export const PointsContainer = styled.div`
@@ -22,22 +25,14 @@ export const PointsContainer = styled.div`
     }
   }
 `;
+
 export const PointsTotal = styled.div`
   font-size: 56px;
   font-weight: bold;
   color: #ffffff;
-`;
-export const PointsTime = styled.div`
-  width: max-content;
-  font-size: 14px;
-  padding: 7px 8px;
-  border-radius: 8px;
-  color: #5c667a;
-  display: block;
-  &:hover {
-    background-color: #2e313e;
-    color: #fff;
-  }
+  line-height: 50px;
+  padding-left: 8px;
+  padding-bottom: 8px;
 `;
 
 export const Role = styled.div`
@@ -67,6 +62,7 @@ export const Role = styled.div`
 
 export const Info = styled.div`
   position: relative;
+  align-self: flex-end;
 
   &:hover ${Role} {
     opacity: 1;
@@ -77,17 +73,21 @@ export const Info = styled.div`
 export const Avatar = styled.div`
   background-image: url(/images/base_avatar.png);
   background-repeat: no-repeat;
-  background-position: 68px 113px;
-  width: 100%;
-  height: 100%;
+  background-position: 0 0;
+  width: 136px;
+  height: 52px;
   position: relative;
+  margin-right: 70px;
+  float: right;
   &:after {
     content: "";
     background-image: url(https://habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=4queijos&direction=4&head_direction=3&size=l&action=std);
     width: 128px;
     height: 220px;
     position: absolute;
-    top: -60px;
-    right: 62px;
+    margin-left: 11px;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 `;

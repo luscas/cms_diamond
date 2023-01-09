@@ -32,7 +32,7 @@ export default function UserPoints({
 
   return (
     <Card>
-      <CardHeader>Meus pontos</CardHeader>
+      <CardHeader pb={6}>Meus pontos</CardHeader>
 
       <Container>
         <PointsContainer>
@@ -81,7 +81,7 @@ export default function UserPoints({
           </DropdownMenu.Root>
         </PointsContainer>
 
-        <Flex gap={4}>
+        <Flex gap={4} mb={6}>
           <PieChart width={88} height={88}>
             <Pie
               activeIndex={2}

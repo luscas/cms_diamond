@@ -1,4 +1,5 @@
-import Head from "next/head";
+import { useContext, useState } from "react";
+import Link from "next/link";
 
 // Components
 import { WelcomeContainer, Welcome } from "~/components/Main/styles";
@@ -11,6 +12,7 @@ import UserPoints from "~/views/User/Points";
 import Footer from "~/views/Footer";
 import Default from "~/layouts/Default";
 
+// Chakra Components
 import {
   Text,
   Button,
@@ -39,12 +41,12 @@ import { HiRefresh } from "react-icons/hi";
 // GraphQL
 import { createClient } from "~/graphql/client/client_user";
 import { GET_RANKING_POINTS } from "~/graphql/ranking_points";
-import { AuthContext } from "../providers/AuthContext";
-import { useContext, useState } from "react";
-import Link from "next/link";
+
+// Hooks
+import { useSession } from '~/hooks/session';
 
 export default function Home(props: any) {
-  const session = useContext(AuthContext);
+  const { user } = useSession();
 
   const [userPointsType, setUserPointsType] = useState<string>("Essa semana");
 
@@ -74,15 +76,15 @@ export default function Home(props: any) {
     switch (time) {
       case "Esse mês":
         return props.view_ranking_monthly.find(
-          (row: any) => row.nick === session?.user?.nick
+          (row: any) => row.nick === user?.nick
         )?.pts;
       case "Esse ano":
         return props.view_ranking_all.find(
-          (row: any) => row.nick === session?.user?.nick
+          (row: any) => row.nick === user?.nick
         )?.pts;
       default:
         return props.view_ranking_weekly.find(
-          (row: any) => row.nick === session?.user?.nick
+          (row: any) => row.nick === user?.nick
         )?.pts;
     }
   };
@@ -90,7 +92,7 @@ export default function Home(props: any) {
   return (
     <>
       <WelcomeContainer>
-        <Welcome>Bem-vindo, {session?.user?.nick}!</Welcome>
+        <Welcome>Bem-vindo, {user?.nick}!</Welcome>
         <Link href="/points/create">
           <Button size="lg" variant="gradient">
             <IconAdd />
